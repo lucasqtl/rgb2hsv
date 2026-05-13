@@ -1,6 +1,10 @@
 import cv2
 import numpy as np
 import streamlit as st
+import pygame
+from pygame.locals import *
+from OpenGL.GL import *
+from OpenGL.GLU import *
 
 st.title("RGB 2 HSV")
 
