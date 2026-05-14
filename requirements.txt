@@ -1,5 +1,0 @@
-streamlit
-numpy
-opencv-python-headless
-PyOpenGL 
-PyOpenGL_accelerate

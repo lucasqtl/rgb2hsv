@@ -1,32 +1,24 @@
-# Conversor RGB para HSV
+# Conversor e Editor RGB para HSV
 
-Este projeto é uma aplicação web interativa construída com Python e Streamlit, desenvolvida como atividade para a disciplina de Computação Gráfica. O objetivo principal é realizar a conversão manual de uma imagem do espaço de cores RGB (lido nativamente como BGR pelo OpenCV) para HSV.
+Este projeto é uma aplicação desktop de Computação Gráfica desenvolvida em Python. O software permite carregar uma imagem no formato RGB, realizar a conversão para o espaço de cores HSV utilizando processamento matricial, exibi-la via renderização por texturas em OpenGL e manipular os canais Matiz, Saturação e Valor de forma interativa.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-* **Upload de Imagens:** Interface simples para o envio de imagens (JPG, PNG) usando o File Uploader do Streamlit.
-* **Conversão Matemática Otimizada:** Implementação manual do cálculo de Matiz (Hue), Saturação (Saturation) e Valor (Value) através de máscaras booleanas no NumPy.
-* **Visualização:** Renderização instantânea da matriz HSV processada diretamente na tela.
+* **Processamento Vetorizado:** Conversão de cores RGB para HSV através de operações matriciais com a biblioteca `NumPy`.
+* **Renderização em OpenGL:** Mapeamento de texturas 2D sobre polígonos (`GL_QUADS`) com configuração de projeção ortogonal.
+* **Manipulação em Tempo Real:** Controles interativos desenvolvidos com `PyQt5` para aplicação de transformações (offsets) nos canais H, S e V da imagem.
 
-## 🛠️ Tecnologias Utilizadas
+## Estrutura do Projeto
 
-* **Python**
-* **Streamlit** (Interface Gráfica Web)
-* **OpenCV** (Leitura de bytes, redimensionamento e exibição)
-* **NumPy** (Processamento rápido de arrays e cálculo das matrizes H, S e V)
+O código está modularizado para separar as responsabilidades lógicas e visuais:
 
-## ⚙️ Como executar o projeto
+* `main.py`: Ponto de entrada da aplicação. Inicializa o loop de eventos `QApplication` do PyQt5 e executa a janela principal.
+* `janela.py`: Contém a interface gráfica principal (`QMainWindow`). Gerencia os componentes visuais (botões, sliders), a leitura de arquivos de imagem via `OpenCV`, o algoritmo de conversão RGB para HSV e o recálculo dos parâmetros da imagem baseados nas entradas do usuário.
+* `tela.py`: Responsável pela renderização gráfica. Define a classe `TelaOpenGL` (herdada de `QOpenGLWidget`), que gerencia o contexto OpenGL, a definição da projeção 2D (`glOrtho`) e o carregamento e mapeamento das texturas na placa de vídeo.
 
-1. **Abra o terminal na pasta do projeto.**
-2. **Ative o seu ambiente virtual:**
-   * No Windows:
-     ```bash
-     .\venv\Scripts\activate
-     ```
-   * No Linux/Mac:
-     ```bash
-     source venv/bin/activate
-     ```
-3. **Instale as dependências (caso ainda não tenha feito):**
-   ```bash
-   pip install streamlit opencv-python numpy
+## Tecnologias e Dependências
+
+Para a execução do projeto, instale as seguintes dependências no seu ambiente virtual (`venv`):
+
+```bash
+pip install PyQt5 PyOpenGL opencv-python numpy
